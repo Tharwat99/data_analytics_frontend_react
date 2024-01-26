@@ -37,6 +37,5 @@ const options = {
     y: { stacked: true },
   },
 };
-
 return <Bar data={chartData} options={options} />;
 };

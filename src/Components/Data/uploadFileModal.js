@@ -27,19 +27,17 @@ export function UploadFileModal({fetchData}) {
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   useEffect(() => {
   },[]);
+  
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-
     // Update the state with the selected file
     setSelectedFile(file);
 
-    // You can perform additional actions with the file, if needed
-    console.log('Selected file:', file);
   };
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -52,16 +50,15 @@ export function UploadFileModal({fetchData}) {
         handleClose();
       } catch (error) {
         if (error.response.status === 400){
-          let error_msg = '';
-          for (let key in error.response.data) {
-            if (error.response.data.hasOwnProperty(key)) {
-              error_msg += key + ":";
-              error_msg += error.response.data[key][0]
-            }
+          if ('data_file' in error.response.data){
+            setErrMsg(error.response.data['data_file'])
+          }else if ('error' in error.response.data){
+          setErrMsg(error.response.data['error'])
+          }else{
+            setErrMsg("An error occurred while uploading file.")
           }
-          setErrMsg(error_msg);
         }else{
-          setErrMsg('An error occurred while adding new employee.');
+          setErrMsg('An error occurred while uploading file.');
         }
         
     }
