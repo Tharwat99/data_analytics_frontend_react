@@ -11,6 +11,13 @@ const PieChart = ({ data }) => {
       legend: {
         position: 'bottom',
       },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Profit per Month',
+          fontSize: 16,
+        },
+      },
     };
 
     const myChart = new Chart(chartRef.current, {
