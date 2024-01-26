@@ -4,6 +4,7 @@ import { UploadFileModal } from './uploadFileModal';
 import { BarChartsModal } from './barChartsModal';
 import { Card, CardContent, Grid } from '@mui/material';
 import { LineChartsModal } from './lineChartsModal';
+import { PieChartsModal } from './pieChartsModal';
 
 const Analytical = () => {
   const [data, setData] = useState([]);
@@ -31,11 +32,19 @@ const Analytical = () => {
       </div>
       <Card>
         <CardContent>
+          <Grid container spacing={2} xs={8}>
+            <BarChartsModal data={data} />
+          </Grid>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardContent>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <BarChartsModal data={data} />
+            <Grid item xs={4}>
+              <PieChartsModal data={data} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={8}>
               <LineChartsModal data={data} />
             </Grid>
           </Grid>
