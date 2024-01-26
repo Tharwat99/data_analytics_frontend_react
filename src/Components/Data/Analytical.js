@@ -31,10 +31,8 @@ const Analytical = () => {
         <UploadFileModal fetchData = {fetchData}/>
       </div>
       <Card>
-        <CardContent>
-          <Grid container spacing={2} xs={8}>
-            <BarChartsModal data={data} />
-          </Grid>
+        <CardContent>  
+          <BarChartsModal data={data} />
         </CardContent>
       </Card>
       
