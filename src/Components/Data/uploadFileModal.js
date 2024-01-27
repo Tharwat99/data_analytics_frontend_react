@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
-import { CircularProgress, FormControl, Grid, Input, InputLabel, Snackbar, TextField } from '@mui/material';
+import { CircularProgress, FormControl, Grid, Input, Snackbar } from '@mui/material';
 import React, { useEffect, useState }  from 'react';
 import axios from 'axios';
 
@@ -49,7 +49,10 @@ export function UploadFileModal({fetchData}) {
         fetchData();
         handleClose();
       } catch (error) {
-        if (error.response.status === 400){
+        if (error.code === "ERR_NETWORK"){
+          setErrMsg(error.message)
+        }
+        else if (error.response.status === 400){
           if ('data_file' in error.response.data){
             setErrMsg(error.response.data['data_file'])
           }else if ('error' in error.response.data){
